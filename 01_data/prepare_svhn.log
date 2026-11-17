@@ -1,0 +1,14 @@
+01_data/raw/svhn/train/digitStruct.mat 0 / 33402
+01_data/raw/svhn/train/digitStruct.mat 5000 / 33402
+01_data/raw/svhn/train/digitStruct.mat 10000 / 33402
+01_data/raw/svhn/train/digitStruct.mat 15000 / 33402
+01_data/raw/svhn/train/digitStruct.mat 20000 / 33402
+01_data/raw/svhn/train/digitStruct.mat 25000 / 33402
+01_data/raw/svhn/train/digitStruct.mat 30000 / 33402
+train : giữ 33401 ảnh, bỏ 1 ảnh có hơn 5 chữ số
+01_data/raw/svhn/test/digitStruct.mat 0 / 13068
+01_data/raw/svhn/test/digitStruct.mat 5000 / 13068
+01_data/raw/svhn/test/digitStruct.mat 10000 / 13068
+test : giữ 13068 ảnh, bỏ 0 ảnh có hơn 5 chữ số
+X_train: (33401, 64, 128, 3)  X_test: (13068, 64, 128, 3)
+Ví dụ nhãn: ['19' '23' '25' '93' '31' '33' '28' '744' '128' '16']

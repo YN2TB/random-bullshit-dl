@@ -1,0 +1,11 @@
+{
+  "train_raw": 33402,
+  "test_raw": 13068,
+  "dropped_train": 1,
+  "dropped_test": 0,
+  "image_size": [
+    64,
+    128,
+    3
+  ]
+}

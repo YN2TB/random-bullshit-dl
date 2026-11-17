@@ -1,0 +1,189 @@
+Train: (30061, 64, 128, 3)  Validation: (3340, 64, 128, 3)  Test: (13068, 64, 128, 3)
+Nhãn: 19  decoder input: [ 1  4 12  0  0  0]  decoder target: [ 4 12  2  0  0  0]
+Model: "functional"
+┌─────────────────────┬───────────────────┬────────────┬───────────────────┐
+│ Layer (type)        │ Output Shape      │    Param # │ Connected to      │
+├─────────────────────┼───────────────────┼────────────┼───────────────────┤
+│ input_layer         │ (None, 64, 128,   │          0 │ -                 │
+│ (InputLayer)        │ 3)                │            │                   │
+├─────────────────────┼───────────────────┼────────────┼───────────────────┤
+│ rescaling           │ (None, 64, 128,   │          0 │ input_layer[0][0] │
+│ (Rescaling)         │ 3)                │            │                   │
+├─────────────────────┼───────────────────┼────────────┼───────────────────┤
+│ random_translation  │ (None, 64, 128,   │          0 │ rescaling[0][0]   │
+│ (RandomTranslation) │ 3)                │            │                   │
+├─────────────────────┼───────────────────┼────────────┼───────────────────┤
+│ random_rotation     │ (None, 64, 128,   │          0 │ random_translati… │
+│ (RandomRotation)    │ 3)                │            │                   │
+├─────────────────────┼───────────────────┼────────────┼───────────────────┤
+│ random_contrast     │ (None, 64, 128,   │          0 │ random_rotation[… │
+│ (RandomContrast)    │ 3)                │            │                   │
+├─────────────────────┼───────────────────┼────────────┼───────────────────┤
+│ conv2d (Conv2D)     │ (None, 64, 128,   │        896 │ random_contrast[… │
+│                     │ 32)               │            │                   │
+├─────────────────────┼───────────────────┼────────────┼───────────────────┤
+│ batch_normalization │ (None, 64, 128,   │        128 │ conv2d[0][0]      │
+│ (BatchNormalizatio… │ 32)               │            │                   │
+├─────────────────────┼───────────────────┼────────────┼───────────────────┤
+│ conv2d_1 (Conv2D)   │ (None, 64, 128,   │      9,248 │ batch_normalizat… │
+│                     │ 32)               │            │                   │
+├─────────────────────┼───────────────────┼────────────┼───────────────────┤
+│ batch_normalizatio… │ (None, 64, 128,   │        128 │ conv2d_1[0][0]    │
+│ (BatchNormalizatio… │ 32)               │            │                   │
+├─────────────────────┼───────────────────┼────────────┼───────────────────┤
+│ max_pooling2d       │ (None, 32, 64,    │          0 │ batch_normalizat… │
+│ (MaxPooling2D)      │ 32)               │            │                   │
+├─────────────────────┼───────────────────┼────────────┼───────────────────┤
+│ conv2d_2 (Conv2D)   │ (None, 32, 64,    │     18,496 │ max_pooling2d[0]… │
+│                     │ 64)               │            │                   │
+├─────────────────────┼───────────────────┼────────────┼───────────────────┤
+│ batch_normalizatio… │ (None, 32, 64,    │        256 │ conv2d_2[0][0]    │
+│ (BatchNormalizatio… │ 64)               │            │                   │
+├─────────────────────┼───────────────────┼────────────┼───────────────────┤
+│ conv2d_3 (Conv2D)   │ (None, 32, 64,    │     36,928 │ batch_normalizat… │
+│                     │ 64)               │            │                   │
+├─────────────────────┼───────────────────┼────────────┼───────────────────┤
+│ batch_normalizatio… │ (None, 32, 64,    │        256 │ conv2d_3[0][0]    │
+│ (BatchNormalizatio… │ 64)               │            │                   │
+├─────────────────────┼───────────────────┼────────────┼───────────────────┤
+│ max_pooling2d_1     │ (None, 16, 32,    │          0 │ batch_normalizat… │
+│ (MaxPooling2D)      │ 64)               │            │                   │
+├─────────────────────┼───────────────────┼────────────┼───────────────────┤
+│ conv2d_4 (Conv2D)   │ (None, 16, 32,    │     73,856 │ max_pooling2d_1[… │
+│                     │ 128)              │            │                   │
+├─────────────────────┼───────────────────┼────────────┼───────────────────┤
+│ batch_normalizatio… │ (None, 16, 32,    │        512 │ conv2d_4[0][0]    │
+│ (BatchNormalizatio… │ 128)              │            │                   │
+├─────────────────────┼───────────────────┼────────────┼───────────────────┤
+│ conv2d_5 (Conv2D)   │ (None, 16, 32,    │    147,584 │ batch_normalizat… │
+│                     │ 128)              │            │                   │
+├─────────────────────┼───────────────────┼────────────┼───────────────────┤
+│ batch_normalizatio… │ (None, 16, 32,    │        512 │ conv2d_5[0][0]    │
+│ (BatchNormalizatio… │ 128)              │            │                   │
+├─────────────────────┼───────────────────┼────────────┼───────────────────┤
+│ max_pooling2d_2     │ (None, 8, 16,     │          0 │ batch_normalizat… │
+│ (MaxPooling2D)      │ 128)              │            │                   │
+├─────────────────────┼───────────────────┼────────────┼───────────────────┤
+│ conv2d_6 (Conv2D)   │ (None, 8, 16,     │    295,168 │ max_pooling2d_2[… │
+│                     │ 256)              │            │                   │
+├─────────────────────┼───────────────────┼────────────┼───────────────────┤
+│ batch_normalizatio… │ (None, 8, 16,     │      1,024 │ conv2d_6[0][0]    │
+│ (BatchNormalizatio… │ 256)              │            │                   │
+├─────────────────────┼───────────────────┼────────────┼───────────────────┤
+│ max_pooling2d_3     │ (None, 4, 8, 256) │          0 │ batch_normalizat… │
+│ (MaxPooling2D)      │                   │            │                   │
+├─────────────────────┼───────────────────┼────────────┼───────────────────┤
+│ dropout (Dropout)   │ (None, 4, 8, 256) │          0 │ max_pooling2d_3[… │
+├─────────────────────┼───────────────────┼────────────┼───────────────────┤
+│ reshape (Reshape)   │ (None, 32, 256)   │          0 │ dropout[0][0]     │
+├─────────────────────┼───────────────────┼────────────┼───────────────────┤
+│ input_layer_1       │ (None, 6)         │          0 │ -                 │
+│ (InputLayer)        │                   │            │                   │
+├─────────────────────┼───────────────────┼────────────┼───────────────────┤
+│ global_average_poo… │ (None, 256)       │          0 │ reshape[0][0]     │
+│ (GlobalAveragePool… │                   │            │                   │
+├─────────────────────┼───────────────────┼────────────┼───────────────────┤
+│ embedding           │ (None, 6, 64)     │        832 │ input_layer_1[0]… │
+│ (Embedding)         │                   │            │                   │
+├─────────────────────┼───────────────────┼────────────┼───────────────────┤
+│ dense (Dense)       │ (None, 256)       │     65,792 │ global_average_p… │
+├─────────────────────┼───────────────────┼────────────┼───────────────────┤
+│ dense_1 (Dense)     │ (None, 256)       │     65,792 │ global_average_p… │
+├─────────────────────┼───────────────────┼────────────┼───────────────────┤
+│ lstm (LSTM)         │ (None, 6, 256)    │    328,704 │ embedding[0][0],  │
+│                     │                   │            │ dense[0][0],      │
+│                     │                   │            │ dense_1[0][0]     │
+├─────────────────────┼───────────────────┼────────────┼───────────────────┤
+│ additive_attention  │ [(None, 6, 256),  │        256 │ lstm[0][0],       │
+│ (AdditiveAttention) │ (None, 6, 32)]    │            │ reshape[0][0]     │
+├─────────────────────┼───────────────────┼────────────┼───────────────────┤
+│ concatenate         │ (None, 6, 512)    │          0 │ lstm[0][0],       │
+│ (Concatenate)       │                   │            │ additive_attenti… │
+├─────────────────────┼───────────────────┼────────────┼───────────────────┤
+│ dense_2 (Dense)     │ (None, 6, 256)    │    131,328 │ concatenate[0][0] │
+├─────────────────────┼───────────────────┼────────────┼───────────────────┤
+│ dropout_1 (Dropout) │ (None, 6, 256)    │          0 │ dense_2[0][0]     │
+├─────────────────────┼───────────────────┼────────────┼───────────────────┤
+│ dense_3 (Dense)     │ (None, 6, 13)     │      3,341 │ dropout_1[0][0]   │
+└─────────────────────┴───────────────────┴────────────┴───────────────────┘
+ Total params: 1,181,037 (4.51 MB)
+ Trainable params: 1,179,629 (4.50 MB)
+ Non-trainable params: 1,408 (5.50 KB)
+Epoch 1/40
+D:\Personal Projects\DeepLearning\.venv\Lib\site-packages\keras\src\backend\torch\rnn.py:656: UserWarning: RNN module weights are not part of single contiguous chunk of memory. This means they need to be compacted at every call, possibly greatly increasing memory usage. To compact weights again call flatten_parameters(). (Triggered internally at C:\actions-runner\_work\pytorch\pytorch\pytorch\aten\src\ATen\native\cudnn\RNN.cpp:1479.)
+  outputs, h_n, c_n = torch._VF.lstm(
+235/235 - 131s - 556ms/step - loss: 0.8330 - val_loss: 1.5391 - learning_rate: 0.0010
+Epoch 2/40
+235/235 - 138s - 589ms/step - loss: 0.4542 - val_loss: 0.5321 - learning_rate: 0.0010
+Epoch 3/40
+235/235 - 127s - 539ms/step - loss: 0.2858 - val_loss: 0.2235 - learning_rate: 0.0010
+Epoch 4/40
+235/235 - 128s - 543ms/step - loss: 0.2166 - val_loss: 0.2616 - learning_rate: 0.0010
+Epoch 5/40
+235/235 - 127s - 541ms/step - loss: 0.1814 - val_loss: 0.1493 - learning_rate: 0.0010
+Epoch 6/40
+235/235 - 127s - 540ms/step - loss: 0.1580 - val_loss: 0.1321 - learning_rate: 0.0010
+Epoch 7/40
+235/235 - 127s - 538ms/step - loss: 0.1460 - val_loss: 0.2017 - learning_rate: 0.0010
+Epoch 8/40
+235/235 - 126s - 537ms/step - loss: 0.1325 - val_loss: 0.1747 - learning_rate: 0.0010
+Epoch 9/40
+235/235 - 126s - 537ms/step - loss: 0.1069 - val_loss: 0.1121 - learning_rate: 5.0000e-04
+Epoch 10/40
+235/235 - 126s - 537ms/step - loss: 0.0976 - val_loss: 0.1044 - learning_rate: 5.0000e-04
+Epoch 11/40
+235/235 - 126s - 537ms/step - loss: 0.0944 - val_loss: 0.1096 - learning_rate: 5.0000e-04
+Epoch 12/40
+235/235 - 127s - 538ms/step - loss: 0.0899 - val_loss: 0.1344 - learning_rate: 5.0000e-04
+Epoch 13/40
+235/235 - 126s - 538ms/step - loss: 0.0763 - val_loss: 0.0899 - learning_rate: 2.5000e-04
+Epoch 14/40
+235/235 - 127s - 538ms/step - loss: 0.0729 - val_loss: 0.0969 - learning_rate: 2.5000e-04
+Epoch 15/40
+235/235 - 126s - 538ms/step - loss: 0.0701 - val_loss: 0.0982 - learning_rate: 2.5000e-04
+Epoch 16/40
+235/235 - 127s - 540ms/step - loss: 0.0633 - val_loss: 0.0883 - learning_rate: 1.2500e-04
+Epoch 17/40
+235/235 - 126s - 535ms/step - loss: 0.0607 - val_loss: 0.0955 - learning_rate: 1.2500e-04
+Epoch 18/40
+235/235 - 126s - 535ms/step - loss: 0.0591 - val_loss: 0.0948 - learning_rate: 1.2500e-04
+Epoch 19/40
+235/235 - 126s - 535ms/step - loss: 0.0550 - val_loss: 0.0894 - learning_rate: 6.2500e-05
+Epoch 20/40
+235/235 - 127s - 540ms/step - loss: 0.0532 - val_loss: 0.0888 - learning_rate: 6.2500e-05
+Epoch 21/40
+235/235 - 127s - 539ms/step - loss: 0.0519 - val_loss: 0.0881 - learning_rate: 3.1250e-05
+Epoch 22/40
+235/235 - 126s - 537ms/step - loss: 0.0513 - val_loss: 0.0868 - learning_rate: 3.1250e-05
+Epoch 23/40
+235/235 - 127s - 541ms/step - loss: 0.0501 - val_loss: 0.0872 - learning_rate: 3.1250e-05
+Epoch 24/40
+235/235 - 126s - 537ms/step - loss: 0.0500 - val_loss: 0.0872 - learning_rate: 3.1250e-05
+Epoch 25/40
+235/235 - 126s - 537ms/step - loss: 0.0489 - val_loss: 0.0866 - learning_rate: 1.5625e-05
+Epoch 26/40
+235/235 - 126s - 537ms/step - loss: 0.0479 - val_loss: 0.0880 - learning_rate: 1.5625e-05
+Epoch 27/40
+235/235 - 126s - 537ms/step - loss: 0.0480 - val_loss: 0.0874 - learning_rate: 1.5625e-05
+Epoch 28/40
+235/235 - 126s - 537ms/step - loss: 0.0473 - val_loss: 0.0874 - learning_rate: 1.0000e-05
+Epoch 29/40
+235/235 - 126s - 535ms/step - loss: 0.0475 - val_loss: 0.0872 - learning_rate: 1.0000e-05
+Epoch 30/40
+235/235 - 126s - 537ms/step - loss: 0.0469 - val_loss: 0.0870 - learning_rate: 1.0000e-05
+D:\Personal Projects\DeepLearning\.venv\Lib\site-packages\keras\src\backend\torch\rnn.py:656: UserWarning: RNN module weights are not part of single contiguous chunk of memory. This means they need to be compacted at every call, possibly greatly increasing memory usage. To compact weights again call flatten_parameters(). (Triggered internally at C:\actions-runner\_work\pytorch\pytorch\pytorch\aten\src\ATen\native\cudnn\RNN.cpp:1479.)
+  outputs, h_n, c_n = torch._VF.lstm(
+Thực tế: 5   Dự đoán: 5
+Thực tế: 210   Dự đoán: 210
+Thực tế: 6   Dự đoán: 6
+Thực tế: 1   Dự đoán: 1
+Thực tế: 9   Dự đoán: 9
+Thực tế: 1   Dự đoán: 1
+Thực tế: 183   Dự đoán: 183
+Thực tế: 65   Dự đoán: 56
+Thực tế: 144   Dự đoán: 144
+Thực tế: 16   Dự đoán: 16
+Sequence accuracy: 0.9034282216100398
+Character error rate: 0.058543331284572835  Length accuracy: 0.972757881848791
+Numeric value metrics: {'R2': np.float64(0.7138954559724603), 'NSE': np.float64(0.7137972933130656), 'MAE': 10.434802571166207, 'RMSE': np.float64(167.5425360241705)}
+log10(1+value) metrics: {'R2': np.float64(0.9118191164048819), 'NSE': np.float64(0.9089084488197464), 'MAE': 0.0380592890514911, 'RMSE': np.float64(0.17111812743202515)}
